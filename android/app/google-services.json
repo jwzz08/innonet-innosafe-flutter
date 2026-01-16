@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "418244950373",
+    "project_id": "cs-server-smartconstruction",
+    "storage_bucket": "cs-server-smartconstruction.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418244950373:android:d354c9e13736b4635a098c",
+        "android_client_info": {
+          "package_name": "com.innonet.innosafe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP5mGeIQ8LXpVvFWkG1tEUDljN3JNlLBQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
