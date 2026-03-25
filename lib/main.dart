@@ -1,14 +1,21 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart'; // [추가]
-
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'app.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 // 백그라운드 메시지 핸들러 (반드시 main 함수 밖, 최상위에 있어야 함)
-// 화면이 꺼져있거나 앱이 종료된 상태에서 알림이 오면 이 함수가 실행됨
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -19,7 +26,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 FlutterLocalNotificationsPlugin();
 
-// 안드로이드 알림 채널 설정 (헤드업 알림을 위해 중요도 High 설정)
+// 안드로이드 알림 채널 설정
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel', // id
   'High Importance Notifications', // title
@@ -29,6 +36,9 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // 앱 전체의 HTTP 인증서 검증을 우회
+  HttpOverrides.global = MyHttpOverrides();
 
   // 1. Firebase 초기화
   await Firebase.initializeApp();

@@ -7,7 +7,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 class TokenService {
-  static const String _baseUrl = "http://220.76.77.250:5003";
+  static const String _baseUrl = "https://220.76.77.250:5003";
   static const String _tokenEndpoint = "/api/v1/push";
 
   Future<void> syncTokenToServer({required String accessToken}) async {
@@ -27,7 +27,7 @@ class TokenService {
         "appVersion": appVersion,
       };
 
-      print("📤 토큰 서버 전송 시작: $requestBody");
+      print("토큰 서버 전송 시작: $requestBody");
 
       // 3. API 호출 시 헤더에 토큰 추가
       final response = await http.post(

@@ -12,7 +12,7 @@ class SafetyMonitorApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
 
     return MaterialApp.router(
-      title: 'Safety Monitor',
+      title: 'INNOSAFE',
 
       // 디자인 테마 적용
       theme: AppTheme.darkTheme,

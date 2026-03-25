@@ -138,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               const SizedBox(height: 12),
 
-              // [수정됨] 헤더 레이아웃: Row + Expanded로 겹침 방지 및 정렬
+              // 헤더 레이아웃: Row + Expanded로 겹침 방지 및 정렬
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
